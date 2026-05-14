@@ -8,11 +8,13 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+        HttpServer server = HttpServer.create(
+            new InetSocketAddress(8080), 0
+        );
 
         server.createContext("/", (HttpExchange exchange) -> {
 
-            String response = "Hello from Java Backend";
+            String response = "Hello from Backend";
 
             exchange.sendResponseHeaders(200, response.length());
 
@@ -24,7 +26,5 @@ public class App {
         server.start();
 
         System.out.println("Backend running on 8080");
-
-        Thread.sleep(300000);
     }
 }
