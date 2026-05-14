@@ -2,16 +2,6 @@ version: '3.8'
 
 services:
 
-  backend:
-
-    build: ./backend
-
-    container_name: backend
-
-    ports:
-      - "8080:8080"
-
-
   frontend:
 
     image: nginx
@@ -27,3 +17,30 @@ services:
 
     depends_on:
       - backend
+
+
+  backend:
+
+    build: ./backend
+
+    container_name: backend
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - database
+
+
+  database:
+
+    image: mysql:8
+
+    container_name: mysql-db
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+
+    ports:
+      - "3306:3306"
